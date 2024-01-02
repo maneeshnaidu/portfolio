@@ -435,10 +435,10 @@
           Nadera, Samabula 3076</p>
       </div>
       <div class="col-md-4"> <i class="fa fa-envelope-o fa-2x"></i>
-        <p>naidum69@gmail.com</p>
+        <p>maneesh.naidu@hotmail.com</p>
       </div>
       <div class="col-md-4"> <i class="fa fa-phone fa-2x"></i>
-        <p> +679 7174 382</p>
+        <p> +679 2032 419</p>
       </div>
       <div class="clearfix"></div>
     </div>
@@ -492,7 +492,38 @@
 <script type="text/javascript" src="js/jquery.counterup.js"></script> 
 <script type="text/javascript" src="js/waypoints.js"></script> 
 <script type="text/javascript" src="js/jqBootstrapValidation.js"></script> 
-<script type="text/javascript" src="js/contact_me.js"></script> 
+<!-- <script type="text/javascript" src="js/contact_me.js"></script>  -->
+<script type="text/javascript" src="js/mail.js"></script>
 <script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript">
+  document.getElementById("contactForm").addEventListener("submit", function(event) {
+  event.preventDefault(); // Prevent the form from submitting
+
+  // Get the form data
+  var formData = new FormData(this);
+
+  // Send the form data to the server
+  fetch("/send-email", {
+    method: "POST",
+    body: formData
+  })
+    .then(function(response) {
+      if (response.ok) {
+        // Handle successful form submission
+        response.text().then(function(result) {
+          alert(result);
+        });
+      } else {
+        // Handle form submission error
+        alert("Message sending failed.");
+      }
+    })
+    .catch(function(error) {
+      // Handle network or server error
+      alert("An error occurred. Please try again later.");
+    });
+});
+
+</script>
 </body>
 </html>
